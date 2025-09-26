@@ -1,34 +1,39 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPoemIndex, setCurrentPoemIndex] = useState(0)
+
+  const catPoems = [
+    {
+      title: "Midnight Whiskers",
+      text: "Soft paws in moonlight gleam,\nWhiskers twitching in a dream.\nPurring songs of ancient lore,\nCat tales from forever more."
+    },
+    {
+      title: "Window Watcher",
+      text: "Perched upon the windowsill,\nWatching birds with focused skill.\nTail a-swishing, eyes so bright,\nNature's show, pure delight."
+    },
+    {
+      title: "Nap Time",
+      text: "Curled in sunbeams, warm and sweet,\nWhispered purrs in rhythm beat.\nDreaming deep of mouse ballet,\nPerfect peace on lazy day."
+    }
+  ]
+
+  const nextPoem = () => {
+    setCurrentPoemIndex((prev) => (prev + 1) % catPoems.length)
+  }
+
+  const currentPoem = catPoems[currentPoemIndex]
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="poem-container">
+      <h1>Cat Poems</h1>
+      <div className="poem-card">
+        <h2>{currentPoem.title}</h2>
+        <pre>{currentPoem.text}</pre>
+        <button onClick={nextPoem}>Next Poem</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
