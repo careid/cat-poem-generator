@@ -1,1 +1,1 @@
-Simple cat poem viewer with 3 built-in poems and a next button. Uses existing project structure with minimal changes to App.tsx and App.css.
+Added dark mode toggle with a moon/sun icon and updated styles to support both light and dark themes. The theme switch includes a smooth transition effect.

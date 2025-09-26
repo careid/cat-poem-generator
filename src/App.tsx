@@ -3,6 +3,7 @@ import './App.css'
 
 function App() {
   const [currentPoemIndex, setCurrentPoemIndex] = useState(0)
+  const [darkMode, setDarkMode] = useState(false)
 
   const catPoems = [
     {
@@ -23,10 +24,19 @@ function App() {
     setCurrentPoemIndex((prev) => (prev + 1) % catPoems.length)
   }
 
+  const toggleDarkMode = () => {
+    setDarkMode(prev => !prev)
+  }
+
   const currentPoem = catPoems[currentPoemIndex]
 
   return (
-    <div className="poem-container">
+    <div className={`poem-container ${darkMode ? 'dark' : ''}`}>
+      <div className="mode-toggle">
+        <button onClick={toggleDarkMode}>
+          {darkMode ? '☀️ Light Mode' : '🌙 Dark Mode'}
+        </button>
+      </div>
       <h1>Cat Poems</h1>
       <div className="poem-card">
         <h2>{currentPoem.title}</h2>
